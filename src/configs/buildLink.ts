@@ -1,5 +1,3 @@
-import {proc} from "vfile/do-not-use-conditional-minproc";
-
 export const getLinkHref = (locale = 'en', page = '') => {
   if (page == '') {
     if (locale == 'en') {
