@@ -1,15 +1,15 @@
-import {languages} from "~/config";
+import { languages } from "~/i18n/config";
 
 const HeadInfo = ({
-                    locale,
-                    page,
-                    title,
-                    description,
-                  }) => {
+  locale,
+  page,
+  title,
+  description,
+}) => {
   return (
     <>
       <title>{title}</title>
-      <meta name="description" content={description}/>
+      <meta name="description" content={description} />
       {
         languages.map((item) => {
           const currentPage = page;
@@ -29,7 +29,7 @@ const HeadInfo = ({
               href = `${process.env.NEXT_PUBLIC_SITE_URL}/`;
             }
           }
-          return <link key={href} rel="alternate" hrefLang={hrefLang} href={href}/>
+          return <link key={href} rel="alternate" hrefLang={hrefLang} href={href} />
         })
       }
       {
@@ -49,7 +49,7 @@ const HeadInfo = ({
             }
           }
           if (locale == item.lang) {
-            return <link key={href + 'canonical'} rel="canonical" hrefLang={hrefLang} href={href}/>
+            return <link key={href + 'canonical'} rel="canonical" hrefLang={hrefLang} href={href} />
           }
         })
       }

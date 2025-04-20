@@ -1,19 +1,19 @@
 import PageComponent from "./PageComponent";
-import {unstable_setRequestLocale} from 'next-intl/server';
+import { setRequestLocale } from 'next-intl/server';
 
 import {
   getExploreText,
-} from "~/configs/languageText";
-import {getPagination, getPublicResultList} from "~/servers/works";
-import {notFound} from "next/navigation";
-import {getCountSticker} from "~/servers/keyValue";
+} from "~/i18n/languageText";
+import { getPagination, getPublicResultList } from "~/servers/works";
+import { notFound } from "next/navigation";
+import { getCountSticker } from "~/servers/keyValue";
 
 export const revalidate = 300;
 export const dynamic = "force-static";
 
-export default async function IndexPage({params: {locale = '', page = 2}}) {
+export default async function IndexPage({ params: { locale = '', page = 2 } }) {
   // Enable static rendering
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
 
   const countSticker = await getCountSticker();
 

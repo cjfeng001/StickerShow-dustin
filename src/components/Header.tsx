@@ -1,25 +1,25 @@
 'use client'
-import {useState} from 'react'
-import {Dialog} from '@headlessui/react'
-import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline'
-import {GlobeAltIcon} from '@heroicons/react/24/outline'
-import {Fragment} from 'react'
-import {Menu, Transition} from '@headlessui/react'
-import {ChevronDownIcon} from '@heroicons/react/20/solid'
+import { useState } from 'react'
+import { Dialog } from '@headlessui/react'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { GlobeAltIcon } from '@heroicons/react/24/outline'
+import { Fragment } from 'react'
+import { Menu, Transition } from '@headlessui/react'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import Link from "next/link";
-import {languages} from "~/config";
-import {useCommonContext} from '~/context/common-context'
+import { languages } from "~/i18n/config";
+import { useCommonContext } from '~/context/common-context'
 import LoadingModal from "./LoadingModal";
 import GeneratingModal from "~/components/GeneratingModal";
 import LoginButton from './LoginButton';
 import LoginModal from './LoginModal';
 import LogoutModal from "./LogoutModal";
-import {getLinkHref} from "~/configs/buildLink";
+import { getLinkHref } from "~/configs/buildLink";
 
 export default function Header({
-                                 locale,
-                                 page
-                               }) {
+  locale,
+  page
+}) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const {
     setShowLoadingModal,
@@ -47,8 +47,8 @@ export default function Header({
 
   return (
     <header className="top-0 z-20 w-full">
-      <LoadingModal loadingText={commonText.loadingText}/>
-      <GeneratingModal generatingText={commonText.generateText}/>
+      <LoadingModal loadingText={commonText.loadingText} />
+      <GeneratingModal generatingText={commonText.generateText} />
       <LoginModal
         loadingText={commonText.loadingText}
         redirectPath={pageResult}
@@ -83,7 +83,7 @@ export default function Header({
             onClick={() => setMobileMenuOpen(true)}
           >
             <span className="sr-only">Open main menu</span>
-            <Bars3Icon className="h-6 w-6" aria-hidden="true"/>
+            <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
         <div className="hidden lg:ml-14 lg:flex lg:flex-1 lg:gap-x-6">
@@ -121,8 +121,8 @@ export default function Header({
           <div>
             <Menu.Button
               className="inline-flex w-full justify-center gap-x-1.5 border border-[rgba(255,255,255,0.5)] rounded-md px-3 py-2 text-sm font-semibold text-white hover:border-[rgba(255,255,255,0.9)]">
-              <GlobeAltIcon className="w-5 h-5 text-white"/>{locale == 'default' ? 'EN' : locale.toUpperCase()}
-              <ChevronDownIcon className="-mr-1 h-5 w-5 text-white" aria-hidden="true"/>
+              <GlobeAltIcon className="w-5 h-5 text-white" />{locale == 'default' ? 'EN' : locale.toUpperCase()}
+              <ChevronDownIcon className="-mr-1 h-5 w-5 text-white" aria-hidden="true" />
             </Menu.Button>
           </div>
           <Transition
@@ -146,11 +146,11 @@ export default function Header({
                     return (
                       <Menu.Item key={item.lang}>
                         <Link href={hrefValue} onClick={() => checkLocalAndLoading(item.lang)} className={"z-30"}>
-                              <span
-                                className={'text-gray-700 block px-4 py-2 text-sm hover:text-[#2d6ae0] z-30'}
-                              >
-                                {item.language}
-                              </span>
+                          <span
+                            className={'text-gray-700 block px-4 py-2 text-sm hover:text-[#2d6ae0] z-30'}
+                          >
+                            {item.language}
+                          </span>
                         </Link>
                       </Menu.Item>
                     )
@@ -163,20 +163,20 @@ export default function Header({
         {
           process.env.NEXT_PUBLIC_CHECK_GOOGLE_LOGIN != '0' ?
             <div className="hidden lg:ml-2 lg:relative lg:inline-block lg:text-left lg:text-white">
-              <LoginButton buttonType={userData.email ? 1 : 0} loginText={authText.loginText}/>
+              <LoginButton buttonType={userData.email ? 1 : 0} loginText={authText.loginText} />
             </div>
             :
             null
         }
       </nav>
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
-        <div className="fixed inset-0 z-30"/>
+        <div className="fixed inset-0 z-30" />
         <Dialog.Panel
           className="fixed inset-y-0 right-0 z-30 w-full overflow-y-auto background-div px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <div className="flex">
               <Link href={getLinkHref(locale, '')} className="-m-1.5 ml-0.5 p-1.5"
-                    onClick={() => checkLocalAndLoading(locale)}>
+                onClick={() => checkLocalAndLoading(locale)}>
                 <img
                   className="h-8 w-auto"
                   src="/website.svg"
@@ -192,7 +192,7 @@ export default function Header({
               onClick={() => setMobileMenuOpen(false)}
             >
               <span className="sr-only">Close menu</span>
-              <XMarkIcon className="h-6 w-6" aria-hidden="true"/>
+              <XMarkIcon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
           <div className="mt-6 flow-root">
@@ -233,8 +233,8 @@ export default function Header({
                   <div>
                     <Menu.Button
                       className="inline-flex w-full justify-center gap-x-1.5 border border-[rgba(255,255,255,0.5)] rounded-md px-3 py-2 text-sm font-semibold text-white hover:border-[rgba(255,255,255,0.9)]">
-                      <GlobeAltIcon className="w-5 h-5 text-white"/>{locale == 'default' ? 'EN' : locale.toUpperCase()}
-                      <ChevronDownIcon className="-mr-1 h-5 w-5 text-white" aria-hidden="true"/>
+                      <GlobeAltIcon className="w-5 h-5 text-white" />{locale == 'default' ? 'EN' : locale.toUpperCase()}
+                      <ChevronDownIcon className="-mr-1 h-5 w-5 text-white" aria-hidden="true" />
                     </Menu.Button>
                   </div>
                   <Transition
@@ -258,11 +258,11 @@ export default function Header({
                             return (
                               <Menu.Item key={item.lang}>
                                 <Link href={hrefValue} onClick={() => checkLocalAndLoading(item.lang)}>
-                              <span
-                                className={'text-gray-700 block px-4 py-2 text-sm hover:text-[#2d6ae0]'}
-                              >
-                                {item.language}
-                              </span>
+                                  <span
+                                    className={'text-gray-700 block px-4 py-2 text-sm hover:text-[#2d6ae0]'}
+                                  >
+                                    {item.language}
+                                  </span>
                                 </Link>
                               </Menu.Item>
                             )
@@ -277,7 +277,7 @@ export default function Header({
                 process.env.NEXT_PUBLIC_CHECK_GOOGLE_LOGIN != '0' ?
                   <div
                     className="relative inline-block text-left text-base font-semibold text-white ml-2">
-                    <LoginButton buttonType={userData.email ? 1 : 0} loginText={authText.loginText}/>
+                    <LoginButton buttonType={userData.email ? 1 : 0} loginText={authText.loginText} />
                   </div>
                   :
                   null

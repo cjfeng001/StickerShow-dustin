@@ -1,15 +1,15 @@
 import PageComponent from "./PageComponent";
-import {unstable_setRequestLocale} from 'next-intl/server';
-import {getSearchText} from "~/configs/languageText";
-import {getLatestPublicResultList} from "~/servers/works";
-import {getCountSticker} from "~/servers/keyValue";
-import {searchByWords, addSearchLog} from "~/servers/search";
+import { setRequestLocale } from 'next-intl/server';
+import { getSearchText } from "~/i18n/languageText";
+import { getLatestPublicResultList } from "~/servers/works";
+import { getCountSticker } from "~/servers/keyValue";
+import { searchByWords, addSearchLog } from "~/servers/search";
 
 export const revalidate = 0;
 
-export default async function SearchPage({params: {locale = ''}, searchParams: {sticker = ''}}) {
+export default async function SearchPage({ params: { locale = '' }, searchParams: { sticker = '' } }) {
   // Enable static rendering
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
 
 
   const countSticker = await getCountSticker();

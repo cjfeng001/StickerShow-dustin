@@ -1,9 +1,9 @@
 import PageComponent from "./PageComponent";
-import {unstable_setRequestLocale} from 'next-intl/server';
+import { setRequestLocale } from 'next-intl/server';
 
-export default async function IndexPage({params: {locale = ''}}) {
+export default async function IndexPage({ params: { locale = '' } }) {
   // Enable static rendering
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
 
   return (
     <PageComponent

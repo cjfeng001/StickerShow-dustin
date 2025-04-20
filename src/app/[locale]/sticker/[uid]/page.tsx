@@ -1,19 +1,19 @@
 import PageComponent from "./PageComponent";
-import {unstable_setRequestLocale} from 'next-intl/server';
+import { setRequestLocale } from 'next-intl/server';
 
 import {
   getDetailText,
-} from "~/configs/languageText";
-import {getSimilarList, getWorkDetailByUid} from "~/servers/works";
-import {notFound} from "next/navigation";
+} from "~/i18n/languageText";
+import { getSimilarList, getWorkDetailByUid } from "~/servers/works";
+import { notFound } from "next/navigation";
 
 // export const revalidate = 86400;
 export const dynamicParams = true
 export const dynamic = 'error';
 
-export default async function IndexPage({params: {locale = '', uid = ''}}) {
+export default async function IndexPage({ params: { locale = '', uid = '' } }) {
   // Enable static rendering
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
 
   const workDetail = await getWorkDetailByUid(locale, uid);
   if (workDetail.status == 404) {

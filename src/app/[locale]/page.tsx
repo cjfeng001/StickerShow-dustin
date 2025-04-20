@@ -1,16 +1,16 @@
 import PageComponent from "./PageComponent";
-import {unstable_setRequestLocale} from 'next-intl/server';
+import { setRequestLocale } from 'next-intl/server';
 
 import {
   getIndexPageText,
   getQuestionText
-} from "~/configs/languageText";
-import {getLatestPublicResultList} from "~/servers/works";
+} from "~/i18n/languageText";
+import { getLatestPublicResultList } from "~/servers/works";
 
 export const revalidate = 120;
-export default async function IndexPage({params: {locale = ''}, searchParams: searchParams}) {
+export default async function IndexPage({ params: { locale = '' }, searchParams: searchParams }) {
   // Enable static rendering
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
 
   const indexText = await getIndexPageText();
   const questionText = await getQuestionText();
